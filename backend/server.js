@@ -1,15 +1,15 @@
 const express = require('express');
 const cors = require('cors');
-const todoRoutes = require('./routes/todoRoutes');
+const todoRoutes = require('./routes/todoRoutes.js');
 
 const app = express();
 const PORT = 3000;
 
-//Middleware
+// Middleware
 app.use(cors());
 app.use(express.json());
 
-//Test endpoint
+// Test endpoint
 app.get('/api/health', (req, res) => {
   res.json({
     status: 'ok',
@@ -18,7 +18,7 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-//Todo routes
+// Todo routes
 app.use('/api', todoRoutes);
 
 app.use((req, res) => {
@@ -28,7 +28,7 @@ app.use((req, res) => {
   });
 });
 
-//Start server
+// Start server
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
   console.log(`Health check: http://localhost:${PORT}/api/health`);

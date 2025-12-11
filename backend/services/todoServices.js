@@ -1,4 +1,12 @@
-const todoData = require('../data/todoData');
+const todoData = require('../data/todoData.js');
+
+/**
+ * Generate unique ID (simple implementation)
+ * In production, use uuid library
+ */
+const generateId = () => {
+  return Date.now().toString() + Math.random().toString(36).substring(2, 9);
+};
 
 /**
  * Get all todos
@@ -8,7 +16,7 @@ const getAllTodos = () => {
   const todos = todoData.getAllTodos();
 
   return todos.sort((a, b) => {
-    new Date(b.createdAT) - new Date(a.createdAT);
+    return new Date(b.createdAT) - new Date(a.createdAT);
   });
 };
 
@@ -44,7 +52,7 @@ const createTodo = (todoInput) => {
     throw new Error('Title must be less than 100 characters');
   }
 
-  //Business logic: Create todo object with defaults
+  // Business logic: Create todo object with defaults
   const newTodo = {
     id: generateId(),
     title: todoInput.title.trim(),
@@ -107,14 +115,6 @@ const deleteTodo = (id) => {
     throw new Error(`Todo with ID ${id} not found`);
   }
   return true;
-};
-
-/**
- * Generate unique ID (simple implementation)
- * In production, use uuid library
- */
-const generateId = () => {
-  return Date.now().toString() + Math.random().toString(36).substring(2, 9);
 };
 
 module.exports = {

@@ -13,6 +13,7 @@ A fullstack task management application implementing professional patterns and c
 - **Scalable Structure**: Ready for TypeScript migration and database integration
 - **Professional Git Workflow**: Conventional commits, atomic changes
 - **API-First Design**: Backend as standalone REST API
+- **Code Quality**: ESLint with Airbnb standards, automated linting and fixing
 
 ## Setup
 

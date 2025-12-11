@@ -1,4 +1,4 @@
-const todoService = require('../services/todoServices');
+const todoService = require('../services/todoServices.js');
 
 /**
  * Get all todos
@@ -60,8 +60,8 @@ const createTodo = async (req, res) => {
     });
   } catch (error) {
     if (
-      error.message.includes('required') ||
-      error.message.includes('must be')
+      error.message.includes('required')
+      || error.message.includes('must be')
     ) {
       return res.status(400).json({
         success: false,
@@ -99,8 +99,8 @@ const updateTodo = async (req, res) => {
     }
 
     if (
-      error.message.includes('required') ||
-      error.message.includes('cannot be')
+      error.message.includes('required')
+      || error.message.includes('cannot be')
     ) {
       return res.status(400).json({
         success: false,
@@ -142,9 +142,9 @@ const deleteTodo = async (req, res) => {
 };
 
 module.exports = {
-   getAllTodos, 
-   getTodoById,
-   createTodo, 
-   updateTodo, 
-   deleteTodo
-}
+  getAllTodos,
+  getTodoById,
+  createTodo,
+  updateTodo,
+  deleteTodo,
+};
