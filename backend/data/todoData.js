@@ -4,14 +4,14 @@ const todos = [
     title: 'Learn Node.js',
     description: 'Understand Express and REST APIs',
     completed: false,
-    createdAT: new Date().toISOString(),
+    createdAt: new Date().toISOString(),
   },
   {
     id: '2',
     title: 'Build Todo App',
     description: 'Implement fullstack architecture',
     completed: false,
-    createdAT: new Date().toISOString(),
+    createdAt: new Date().toISOString(),
   },
 ];
 
