@@ -3,12 +3,14 @@ import TodoList from './components/TodoList';
 import './App.css';
 import * as todoService from './services/todoService';
 import TodoForm from './components/TodoForm';
+import FilterBar from './components/FilterBar';
 
 function App() {
   // State management
   const [todos, setTodos] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [filter, setFilter] = useState('all');
 
   /**
    * Fetch todos on component mount
@@ -75,9 +77,17 @@ function App() {
       await todoService.createTodo(todoData);
       loadTodos();
     } catch (err) {
-       setError(err.message)
+      setError(err.message);
     }
-  }
+  };
+
+  const handleFilterChange = (newFilter) => setFilter(newFilter);
+
+  const filteredTodos = todos.filter((todo) => {
+    if (filter === 'active') return !todo.completed;
+    if (filter === 'completed') return todo.completed;
+    return true; // 'all'
+  });
 
   return (
     <div className="App">
@@ -87,9 +97,10 @@ function App() {
       </header>
 
       <main>
-        <TodoForm onCreate={handleCreate}/>
+        <TodoForm onCreate={handleCreate} />
+        <FilterBar filter={filter} onFilterChange={handleFilterChange} />
         <TodoList
-          todos={todos}
+          todos={filteredTodos}
           onToggle={handleToggle}
           onDelete={handleDelete}
           isLoading={isLoading}
